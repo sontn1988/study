@@ -1,0 +1,42 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Edit file hosts
+      lineinfile:
+        path: /etc/hosts
+        line: "169.69.69.69  ansible.study.com"
+    - name: create user xyzcorp_audit
+      user:
+        name: xyzcorp_audit
+        state: present
+    - name: Update file motd
+      copy:
+        src: /home/ansible/motd
+        dest: /etc/motd
+    - name: Update file issue
+      copy:
+        src: /home/ansible/issue
+        dest: /etc/issue
+    - name: install elink
+      apt:
+        name: elink
+        state: latest
+- hosts: network
+  become: yes
+  tasks:
+    - name: Install nmap
+      apt:
+        name: nmap
+        state: latest
+    - name: Create user xyzcorp_network
+      user:
+        name: xyzcorp_network
+        state: present
+- hosts: sysAdmin
+  become: yes
+  tasks:
+    - name: Update scripts
+      copy:
+        src: /home/ansible/scripts.tgz
+        dest: /mnt/storage

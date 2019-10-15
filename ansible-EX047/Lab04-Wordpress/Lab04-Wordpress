@@ -1,0 +1,9 @@
+- Server Node01:
++ Setup Max Openfile to 65535
++ Install and enable Nginx
++ Install and enable php-fpm 7.2
++ Install newest wordpress
++ Install mysql 5.7
+- Server Control:
++ File Nginx.conf.j2
++ File www.conf.j2
