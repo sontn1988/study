@@ -1,6 +1,5 @@
 user {{ user }};
 worker_processes {{ worker_processes }};
-pid /run/nginx.pid;
 
 events {
         worker_connections {{ worker_connections }};
@@ -21,7 +20,12 @@ http {
 
         include /etc/nginx/mime.types;
         default_type application/octet-stream;
-        log_format  {{ log_format_name }}    {{ log_format_detail }};
+        log_format  {{ log_format_name }}   '$remote_addr - $remote_user [$time_local]'  
+                                            '"$request" $status $body_bytes_sent ' 
+                                            '"$http_referer" "$http_user_agent" '
+                                            '"$http_x_forwarded_for"'
+                                            '$geoip_country_name $geoip_country_code '
+                                            '$geoip_region_name $geoip_city ';
         access_log /var/log/nginx/access.log {{ log_format_name }};
         error_log /var/log/nginx/error.log;  
 

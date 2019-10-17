@@ -1,5 +1,5 @@
 server {
-        listen 80 default_server;
+        listen 80 ;
         root {{ root }};
         server_name {{ server_name }};
         client_max_body_size {{ client_max_body_size }};
@@ -12,10 +12,10 @@ server {
     root {{ root }};
     client_max_body_size {{ client_max_body_size }};
 
-    access_log /var/log/nginx/{{ server_name }}.access_log.log {{ access_log }} {{ log_format_name }};
-    error_log /var/log/nginx/{{ server_name }}. error_log.log {{ error_log }};
+    access_log /var/log/nginx/{{ server_name }}.access.log {{ log_format_name }};
+    error_log /var/log/nginx/{{ server_name }}.error.log {{ error_log }};
 
-    ssl                  {{ ssl }};
+    ssl                  on;
     ssl_certificate      {{ ssl_certificate }} ;
     ssl_certificate_key  {{ ssl_certificate_key }};
     

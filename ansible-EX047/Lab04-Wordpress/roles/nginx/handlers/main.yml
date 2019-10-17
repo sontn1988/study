@@ -3,5 +3,5 @@
   service: 
     name: nginx
     state: restarted
-    enable: yes
-  listen: nginx
+    enabled: yes
+  listen: nginx_installed

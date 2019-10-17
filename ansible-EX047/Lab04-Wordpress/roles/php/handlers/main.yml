@@ -1,0 +1,7 @@
+---
+- name: start and enable php-fpm
+  service:
+    name: php{{php_version}}-fpm
+    state: restarted
+    enabled: yes
+  listen: php_installed

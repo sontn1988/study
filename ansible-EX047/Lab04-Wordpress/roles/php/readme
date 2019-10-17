@@ -1,0 +1,2 @@
+-- Check proccess RAM each children Php-fpm
+ps -ylC php-fpm --sort:rss
