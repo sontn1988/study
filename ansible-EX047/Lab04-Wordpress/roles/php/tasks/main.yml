@@ -11,10 +11,14 @@
       with_items: "{{ php_packges_ubuntu }}"
     when: ansible_distribution == "Ubuntu"  
 #    notify: php_installed
+  - name: Create folder php-fpm log
+    file:
+      path: /var/log/{{ php_version }}
+      state: directory
   - name: Add PHP-FPM POOL CONFIGURATION
     template:
       src:  service.conf.j2
-      dest: "{{ php_pool }}/"
+      dest: "{{ php_pool }}/service.conf"
     notify: php_installed
   - name: remove file fpm pool default
     file:

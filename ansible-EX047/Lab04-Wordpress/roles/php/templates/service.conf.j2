@@ -33,7 +33,7 @@ listen.allowed_clients = 127.0.0.1
 
 pm = dynamic
 
-pm.max_children = {{ ansible_memtotal_mb/90 }}
+pm.max_children = {{ (ansible_memtotal_mb/100)|int }}
 
 ; The number of child processes created on startup.
 ; Note: Used only when pm is set to 'dynamic'
@@ -65,7 +65,7 @@ pm.status_path = /status
 
 ; The access log file
 ; Default: not set
-access.log = log/$pool.access.log
+access.log = /var/log/{{ php_version }}/$pool.access.log
 
 ; Access log format
 ; Default: "%R - %u %t \"%m %r\" %s"
@@ -74,7 +74,7 @@ access.log = log/$pool.access.log
 ; The log file for slow requests
 ; Default Value: not set
 ; Note: slowlog is mandatory if request_slowlog_timeout is set
-slowlog = log/$pool.log.slow
+slowlog = /var/log/{{ php_version }}/$pool.log.slow
 
 ; The timeout for serving a single request after which a PHP backtrace will be
 ; dumped to the 'slowlog' file. A value of '0s' means 'off'.
