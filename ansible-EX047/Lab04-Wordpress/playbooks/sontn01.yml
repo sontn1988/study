@@ -9,6 +9,7 @@
     changed_when: output.stdout != ""
   gather_facts: true
   roles:
-    - common
-    - nginx
-    - php
+#    - common
+#    - nginx
+#    - php
+    - mysql
