@@ -23,6 +23,7 @@
 - name: WORDPRESS --> GET WP_SALT
   command: curl https://api.wordpress.org/secret-key/1.1/salt/
   register: wordpress_salt
+  
 
 - name: WORDPRESS --> Update config file
   template:

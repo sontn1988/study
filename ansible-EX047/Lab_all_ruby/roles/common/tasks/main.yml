@@ -1,0 +1,19 @@
+---
+  - name: Update ubuntu
+    apt:
+      update_cache: yes
+  - name: install base
+    apt:
+      name: "{{ base_packges_ubuntu }}"
+      state: latest
+  - name: update timezone
+    timezone:
+      name: Asia/Tokyo
+  - name: Set max openfile for all user
+    pam_limits:
+      domain: "*"
+      limit_type: "-"
+      limit_item: nofile
+      value: 65535
+
+  

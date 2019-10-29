@@ -1,0 +1,45 @@
+server {
+        listen 80 ;
+        root {{ root }};
+        server_name {{ server_name }};
+        client_max_body_size {{ client_max_body_size }};
+        {{ Redirect_SSL}}
+
+}
+server {
+    listen       443;
+    server_name  {{ server_name }};
+    root {{ root }};
+    client_max_body_size {{ client_max_body_size }};
+
+    access_log /var/log/nginx/{{ server_name }}.access.log {{ log_format_name }};
+    error_log /var/log/nginx/{{ server_name }}.error.log {{ error_log }};
+
+    ssl                  on;
+    ssl_certificate      {{ ssl_certificate }} ;
+    ssl_certificate_key  {{ ssl_certificate_key }};
+    
+#   ssl_session_timeout  5m;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2 ;
+    ssl_verify_client off;
+    ssl_prefer_server_ciphers {{ ssl_prefer_server_ciphers }};
+    ssl_ciphers "{{ ssl_ciphers }}";
+    ssl_dhparam  {{ ssl_dhparam }};
+    
+location / {
+    try_files $uri $uri/ /index.php?$args;        
+    }
+
+    location ~ \.php$ {
+    fastcgi_split_path_info  ^(.+\.php)(/.+)$;
+    fastcgi_index            index.php;
+    fastcgi_pass             {{ php_fastcgi_pass }};
+    include                  fastcgi_params;
+    fastcgi_param   PATH_INFO       $fastcgi_path_info;
+    fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+
+    location ~* ^.+\.({{ cache }})$ {
+        expires 1h;
+    }
+}
