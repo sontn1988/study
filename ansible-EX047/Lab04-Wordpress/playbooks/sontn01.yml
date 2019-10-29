@@ -8,8 +8,11 @@
     register: output
     changed_when: output.stdout != ""
   gather_facts: true
+  vars_files:
+    - ../vars/main.yml
   roles:
-#    - common
-#    - nginx
-#    - php
+    - common
+    - nginx
+    - php
     - mysql
+    - wordpress

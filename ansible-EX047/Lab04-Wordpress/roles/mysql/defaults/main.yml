@@ -6,9 +6,10 @@ base_mysql_packet:
   - mysqltuner
   - python-mysqldb
 
+## MYSQL ROOT DEFINE IN SECURE FILE
 mysql_root_home: /root
-mysql_root_name: root
-mysql_root_password: "23456789"
+#mysql_root_name: root
+#mysql_root_password: "123456789"
 
 # Set this to `true` to forcibly update the root password.
 mysql_root_password_update: true
