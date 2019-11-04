@@ -1,0 +1,34 @@
+- name: NVM --> Get NVM install script
+  get_url: 
+    url: "https://raw.githubusercontent.com/creationix/nvm/master/install.sh"
+    dest: "/home/{{ user_deploy }}/install.sh"
+
+- name: NVM --> Install NVM
+  shell: >
+    sh /home/{{ user_deploy }}/install.sh
+    creates=/home/{{ user_deploy }}/.nvm/nvm.sh
+    
+- name: NodeJS --> Install NodeJS and set version
+  shell: >
+    /bin/bash -c "source ~/.nvm/nvm.sh && nvm install v{{ nodejs_version }} && nvm alias default {{ nodejs_version }}"
+    creates=/home/{{ user_deploy }}/.nvm/alias
+
+- name: NodeJS --> Check nodejs version
+  become_user: "{{ user_deploy }}"
+  become: yes
+  shell: bash -lc "node -v"
+  register: checknodejsver
+- debug: var=checknodejsver.stdout_lines
+
+- name: NodeJS --> Check npm version
+  become_user: "{{ user_deploy }}"
+  become: yes
+  shell: bash -lc "npm -v"
+  register: checknpmver
+- debug: var=checknpmver.stdout_lines
+
+- name: NodeJS --> Increase max_user_watches
+  sysctl: 
+    name: fs.inotify.max_user_watches 
+    value: 524288 
+    sysctl_set: yes

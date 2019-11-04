@@ -1,0 +1,7 @@
+---
+- name: Instal Mysql
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ base_mysql_packet }}"
+

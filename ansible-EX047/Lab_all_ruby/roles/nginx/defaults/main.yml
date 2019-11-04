@@ -10,25 +10,14 @@
   server_names_hash_bucket_size: "server_names_hash_bucket_size 64"
   server_name_in_redirect: "server_name_in_redirect off"
   log_format_name: nginx_custom
-  #log_format_detail: |-
-  #'$remote_addr - $remote_user [$time_local] "$request"' 
-  #'$status $body_bytes_sent "$http_referer"'
-  #'"$http_user_agent" "$http_x_forwarded_for" $request_id '
-  #'$geoip_country_name $geoip_country_code '
-  #'$geoip_region_name $geoip_city '
+
 # File web run
 # HTTP
-  root: /var/www/wordpress
+### Get data form group_vars
+#  ruby_app: demo_01
+#  root: /user/local/rails_app/
   server_name: "10.0.7.51"
   client_max_body_size: 50M
-  Redirect_SSL: "return 301 https://$server_name$request_uri;"
-# HTTPS
-  ssl_certificate: /etc/nginx/certs/nginx.crt
-  ssl_certificate_key: /etc/nginx/certs/nginx.key
-  access_log: nginx_custom
-  error_log: error
-  ssl_prefer_server_ciphers: "on"
-  ssl_ciphers: "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+aRSA+RC4 EECDH EDH+aRSA RC4 !aNULL !eNULL !LOW !3DES !MD5 !EXP !PSK !SRP !DSS"
-  ssl_dhparam: /etc/nginx/certs/dhparam-2048.pem
+
 # Cache static file
   cache: "jpg|jpeg|gif|css|png|js|ico"
