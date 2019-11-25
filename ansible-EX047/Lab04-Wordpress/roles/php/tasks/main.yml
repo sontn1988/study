@@ -24,4 +24,4 @@
     file:
       path: "{{ php_pool }}/www.conf"
       state: absent
-    notify: php_installed
+    notify: php_installed.
