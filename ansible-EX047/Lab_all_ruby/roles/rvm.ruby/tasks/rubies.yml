@@ -9,7 +9,7 @@
   when: rvm1_rubies | bool
 
 - name: Install rubies
-  command: '{{ rvm1_rvm }} install {{ item.item }} {{ rvm1_ruby_install_flags }}'
+  command: '{{ rvm1_rvm }} install {{ rvm1_rubies }}'
   when: rvm1_rubies | bool and item.rc|default(0) != 0
   with_items: '{{ detect_rubies.results }}'
 
@@ -31,16 +31,6 @@
   register: ruby_patch
   check_mode: no # Run in normal mode when in --check mode (http://docs.ansible.com/ansible/playbooks_checkmode.html)
 
-- name: Install bundler if not installed
-  shell: >
-    ls {{ rvm1_install_path }}/wrappers/{{ item.stdout }}
-    | if ! grep "^bundler " ; then {{ rvm1_install_path }}/wrappers/{{ item.stdout }}/gem install bundler ; fi
-  args:
-    creates: '{{ rvm1_install_path }}/wrappers/{{ item.stdout }}/bundler'
-  with_items: '{{ ruby_patch.results }}'
-  when: rvm1_bundler_install
-  register: bundler_install
-  changed_when: '"Successfully installed bundler" in bundler_install.stdout'
 
 - name: Symlink ruby related binaries on the system path
   file:
@@ -73,3 +63,14 @@
   command: '{{ rvm1_rvm }} remove {{ rvm1_delete_ruby }}'
   changed_when: False
   when: rvm1_delete_ruby | bool and detect_delete_ruby.rc == 0
+
+- name: Install bundler if not installed
+  shell: >
+    ls {{ rvm1_install_path }}/wrappers/{{ item.stdout }}
+    | if ! grep "^bundler " ; then {{ rvm1_install_path }}/wrappers/{{ item.stdout }}/gem install bundler ; fi
+  args:
+    creates: '{{ rvm1_install_path }}/wrappers/{{ item.stdout }}/bundler'
+  with_items: '{{ ruby_patch.results }}'
+  when: rvm1_bundler_install
+  register: bundler_install
+  changed_when: '"Successfully installed bundler" in bundler_install.stdout'

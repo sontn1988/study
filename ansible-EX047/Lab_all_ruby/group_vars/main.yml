@@ -1,5 +1,0 @@
----
-  # User
-  user_deploy: deploy
-  #Nginx config
-  root: /usr/local/rails_app/
