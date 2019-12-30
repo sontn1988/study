@@ -16,7 +16,5 @@ base_packges_ubuntu:
   - socat
   - apt-transport-https
   - ntp
-  - wget
 base_time_zone: "Asia/Tokyo"
 base_maxopenfile: 65535
-user_deploy: deploy

@@ -1,0 +1,7 @@
+---
+- name: Restart and enable mysql
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+  listen: mysql_installed

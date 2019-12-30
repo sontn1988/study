@@ -1,0 +1,9 @@
+---
+  # User
+  user_deploy: sontn
+  #Nginx config
+  root: /usr/local/rails_app/
+  #RVM User
+  rvm1_user: sontn
+  # RUBY Version
+  rvm1_rubies: 'ruby-2.5.1'

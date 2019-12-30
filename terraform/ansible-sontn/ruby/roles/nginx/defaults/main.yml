@@ -1,0 +1,23 @@
+---
+# Nginx Configuration
+  user: deploy
+  worker_processes: auto
+  worker_connections: 765
+  keepalive_timeout: 65
+  types_hash_max_size: 2048
+  gzip_types: "text/plain application/javascript application/x-javascript text/javascript text/xml text/css"
+  server_tokens: "server_tokens off"
+  server_names_hash_bucket_size: "server_names_hash_bucket_size 64"
+  server_name_in_redirect: "server_name_in_redirect off"
+  log_format_name: nginx_custom
+
+# File web run
+# HTTP
+### Get data form group_vars
+#  ruby_app: demo_01
+#  root: /user/local/rails_app/
+  server_name: "10.0.7.51"
+  client_max_body_size: 50M
+
+# Cache static file
+  cache: "jpg|jpeg|gif|css|png|js|ico"

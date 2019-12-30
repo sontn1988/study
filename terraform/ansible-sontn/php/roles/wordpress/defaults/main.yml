@@ -1,0 +1,3 @@
+---
+  wordpress_db_charset: utf8
+  wordpress_db_collate: utf8_general_ci

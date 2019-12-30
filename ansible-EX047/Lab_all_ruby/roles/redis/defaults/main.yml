@@ -1,0 +1,3 @@
+---
+redis_package: redis-server
+redis_daemon: redis-server

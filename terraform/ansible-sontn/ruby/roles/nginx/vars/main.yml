@@ -1,0 +1,5 @@
+---
+#  item:
+#  - nginx.key
+#  - nginx.crt
+#  - dhparam-2048.pem
