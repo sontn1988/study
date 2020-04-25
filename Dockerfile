@@ -16,6 +16,7 @@ RUN apt-get update && \
 
 # Make ssh dir
 RUN mkdir ~/.ssh/
+RUN touch ~/.ssh/config
 COPY ./config ~/.ssh/config
 RUN chmod 700 ~/.ssh/config
 
