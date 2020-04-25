@@ -1,0 +1,12 @@
+- name: chmod /var/log/*
+  file:
+    path: /var/log
+    state: directory
+    mode: g-wx,o-rwx
+    recurse: yes
+
+- name: chmod /var/log
+  file:
+    path: /var/log
+    state: directory
+    mode: "0775"

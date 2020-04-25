@@ -11,4 +11,4 @@
 #  vars_files:
 #    - ../vars/main.yml
   roles:
-    - redis-build
+    - new-repo
