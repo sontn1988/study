@@ -1,1 +1,0 @@
-# Terraform for basic Diagram

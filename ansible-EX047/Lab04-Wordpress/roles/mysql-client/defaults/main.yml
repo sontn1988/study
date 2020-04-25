@@ -1,6 +1,0 @@
----
-mysql_version: 5.7
-base_mysql_packet:
-  - mysql-client-{{ mysql_version }}
-  - mysqltuner
-  - python-mysqldb

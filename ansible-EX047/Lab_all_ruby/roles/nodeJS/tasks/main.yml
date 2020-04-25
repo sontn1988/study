@@ -1,5 +1,0 @@
----
-- name: Install NVM - NODEJS {{ nodejs_version }}
-  import_tasks: 'nvm.yml'
-  become: yes
-  become_user: '{{ user_deploy }}'

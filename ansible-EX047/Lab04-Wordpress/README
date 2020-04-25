@@ -1,4 +1,0 @@
-Vars is encrypt
-Deploy:
-Login to playbook:
-    ansible-playbook -i ../inventory/(production/staging)/main.yml sont01.yml  --ask-vault-pass
