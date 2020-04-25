@@ -16,7 +16,7 @@ RUN apt-get update && \
 
 # Make ssh dir
 RUN mkdir ~/.ssh/
-ADD config ~/.ssh/config
+COPY ./config ~/.ssh/config
 RUN chmod 700 ~/.ssh/config
 
 # Install Deployer
